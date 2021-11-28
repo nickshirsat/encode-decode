@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bpsp.conversiontool;
 
 import java.io.IOException;
@@ -12,6 +7,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -23,11 +19,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-/**
- *
- * @author admin
- */
-public class AES256Demo {
+
+public class Decrypt {
+
 
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
 //    private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
@@ -93,7 +87,19 @@ public class AES256Demo {
     public static void main(String[] args) throws IOException {
 
         try {
-//            String name = "{}";
+        	Scanner sc = new Scanner(System.in);
+//            String name = "{\n"
+//            		+ "        \"filter\": {\n"
+//            		+ "                \"baas_buyer_xpress_id\": \"LNIT000001\",\n"
+//            		+ "                \"bpsp_buyer_code\": \"EMI50113\",\n"
+//            		+ "                \"baas_supplier_xpress_id\": \"SCIF000001\",\n"
+//            		+ "                \"bpsp_suplier_code\": \"AIRB51222\",\n"
+//            		+ "                \"created_date_from\": \"\",\n"
+//            		+ "                \"created_date_to\": \"\"\n"
+//            		+ "        },\n"
+//            		+ "        \"pagination_index\": 1,\n"
+//            		+ "        \"limit\": 10\n"
+//            		+ "}";
 //
 //            System.out.println("Plan text = " + name);
 //            String key = generateRandomKey();
@@ -104,8 +110,10 @@ public class AES256Demo {
 //            System.out.println("encryptedKey = " + encryptedKey);
 //            String encryptedText = encrypt(name, key);
 //            System.out.println("encryptedText = " + encryptedText);
-            String encryptedKey = "bH6kNEtxGALXP8JLqzW1wcdkIwbcGCNIpG/5RE+1ikta5poUhJXCcvHIa7uqGm001UUCOud8/96TVZmZtr7eiRJGYToCOdXq1JawFw5aDPQlzdmI/aAMwp598vt2KMorrInpX7SA/CQE0/s0l7d+iIvwIKp6GZUEGA6/ctmg+oPckhTWVXf3yXZIPy1bCpkPDZh/29+xfuc5whHIrUf6pUiNlsfjcqvmrz7frgIjDwasJdQbcU8KZ0sDUOCG1bpHR/v1m10DVpHuWTUl+JeCsWfsrdfXv36KH0GWczY18WiiLXQh8IZ77P37Ub1i6ztUDp0kLVa9/DzZtg4u5CG59FRSSWuX2yE2XZMMNdipoLUrC9cJAWRWIRmoovyUoEZ2pl+3d+0xzHkWdzC1UDjJqyy0umj06th6MpvDHTMevCkRqkAGtTGB34CPJ8YiPAkIeoS1qdt5VLpLCNRp6dXSMGT1jOaHDkPsAQDSyEAvIoXwEJsxhoMC4esNTG7OhOWtVY1BUfI41LXvtmBsZYwlQ1o5U9v9OfPdKEUaiFiAJMPPhuatViaWT6bYXxqQZks9+BVN+MIZ0h/GLQFittuWb4Sq5pJS6L4h0+VOr/G97h+bZ90aes0VPHIuzVXPeowDUEUbQtkM30VCIUtrfzb0bLnt8ydSJUks6UugizHBO6Y=";
-            String encryptedText = "CE274494A67FD96798BFC5B556AFEF55ACC8CEE3CE08DE1906B3C0B7C1217DF090EFFB1851C08993733D10B7D3DC467E";
+        	System.out.println("Enter Encrypted Response Data : ");
+        	String encryptedText = sc.nextLine();
+        	System.out.println("Enter Encrypted Response Key : ");
+            String encryptedKey = sc.nextLine();
             System.out.println("decrypt key");
             byte[] decryptKey = RSAUtil.decrypt(encryptedKey);
             String key1 = new String(decryptKey);
@@ -115,19 +123,19 @@ public class AES256Demo {
             System.out.println("decryptedText = " + decryptedText);
 //            System.out.println("public = " + publicKey.length());
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeyException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalBlockSizeException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (BadPaddingException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidAlgorithmParameterException ex) {
-            Logger.getLogger(AES256Demo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Encrypt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
