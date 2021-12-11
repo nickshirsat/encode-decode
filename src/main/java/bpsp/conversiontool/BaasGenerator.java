@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
-import java.util.Scanner;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -21,8 +20,9 @@ import javax.crypto.spec.SecretKeySpec;
 public class BaasGenerator {
 
     public static final String ALGORITHM = "HmacSHA256";
+	
 
-    public static String generate(final String key, final String data) throws NoSuchAlgorithmException, InvalidKeyException {
+	public static String generate(final String key, final String data) throws NoSuchAlgorithmException, InvalidKeyException {
         if (key == null || data == null) {
             throw new NullPointerException();
         }
@@ -43,17 +43,10 @@ public class BaasGenerator {
         return hexString.toString();
     }
 
-    public static void main(String[] args) {
+    public void executeBaasGen(String e_data,String e_key,String endpoint) {
         long currentTime = Calendar.getInstance().getTimeInMillis();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.printf("Enter Encrypted Data : \n");
-        String e_data = sc.nextLine();
-        System.out.printf("Enter Encrypted Key : \n");
-        String e_key = sc.nextLine();
-        System.out.printf("Enter Endpoint : \n");
-        String endpoint = sc.nextLine();
-        
+
         String query_string = "APIKey=" + "74d9a259-a452-45fa-8028-9e89ade25016";
         String requestData = "{\n"
                 + "\"EncryptedData\": \"" + e_data + "\",\n"
