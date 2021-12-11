@@ -6,7 +6,6 @@
 package bpsp.conversiontool;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +13,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -93,11 +93,10 @@ public class Encrypt {
     public static void main(String[] args) throws IOException {
 
         try {
-            String name = "{\n"
-            		+ "        \"request_id\": \"3334449853\",\n"
-            		+ "        \"bpsp_bank_account_code\": \"BANKAC19128\",\n"
-            		+ "        \"baas_bank_account_id\": \"1332215689848\"\n"
-            		+ "}";
+            String name = "{\r\n" + 
+            		"	\"request_id\": \"33387644224\",\r\n" + 
+            		"	\"baas_token_id\": \"1341122196819\"\r\n" + 
+            		"}";
 
             System.out.println("Plan text = " + name);
             String key = generateRandomKey();
